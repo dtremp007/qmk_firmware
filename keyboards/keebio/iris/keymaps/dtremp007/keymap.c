@@ -22,9 +22,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
       KC_CAPS_LOCK, LCTL_T(KC_A), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_D,         KC_H, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_O), KC_QUOT,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           KC_LGUI, LSFT_T(KC_Z), KC_X, KC_C, KC_V, KC_B, TG(_RAISE),                          TG(_LOWER),  KC_K, KC_M, KC_COMM, KC_DOT, RSFT_T(KC_SLSH), XXXXXXX,
+           KC_LEFT_CTRL, LSFT_T(KC_Z), KC_X, KC_C, KC_V, KC_B, KC_SPC,             TG(_LOWER),  KC_K, KC_M, KC_COMM, KC_DOT, RSFT_T(KC_SLSH), XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                        KC_SPC, LT(_RAISE, KC_BSPC), LT(_ADJUST, KC_TAB),        KC_ENT, LT(_LOWER, KC_SPC), QK_ESCAPE
+                         KC_ESCAPE, LT(_RAISE, KC_BSPC), LT(_ADJUST, KC_TAB),        KC_ENT, LT(_LOWER, KC_SPC), KC_COLON
         //                                    └────────┴────────┴────────┘         └────────┴────────┴────────┘
         ),
 

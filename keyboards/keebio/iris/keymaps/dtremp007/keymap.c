@@ -12,19 +12,29 @@ enum custom_keycodes {
     ADJUST,
 };
 
+// Tap Dance Declarations
+enum {
+    TD_SPACE_SFT
+};
+
+// Tap Dance Definitions
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_SPACE_SFT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_LSFT)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_COLEMAK] = LAYOUT(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-            XXXXXXX, KC_1,   KC_2,    KC_3,     KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
+            KC_GRAVE, KC_1,   KC_2,    KC_3,     KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           QK_GRAVE_ESCAPE, KC_Q, KC_W, KC_F, KC_P, KC_G,                                          KC_J, KC_L, KC_U, KC_Y, KC_SCLN, XXXXXXX,
+           KC_ESCAPE, KC_Q, KC_W, KC_F, KC_P, KC_G,                                          KC_J, KC_L, KC_U, KC_Y, KC_SCLN, KC_PGUP,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_CAPS_LOCK, LCTL_T(KC_A), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_D,         KC_H, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_O), KC_QUOT,
+      CW_TOGG, LCTL_T(KC_A), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_D,         KC_H, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_O), KC_QUOT,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           LCTL(KC_B), LSFT_T(KC_Z), KC_X, KC_C, KC_V, KC_B, KC_ESC,             TG(_LOWER),  KC_K, KC_M, KC_COMM, KC_DOT, RSFT_T(KC_SLSH), XXXXXXX,
+           LCTL(KC_B), LSFT_T(KC_Z), KC_X, KC_C, KC_V, KC_B, KC_LCTL,             TG(_LOWER),  KC_K, KC_M, KC_COMM, KC_DOT, RSFT_T(KC_SLSH), KC_PGDN,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                         KC_SPC, LT(_RAISE, KC_BSPC), LT(_ADJUST, KC_TAB),        KC_ENT, LT(_LOWER, KC_SPC), KC_COLON
+                         QK_LEADER, LT(_RAISE, KC_BSPC), LT(_ADJUST, KC_TAB),        KC_ENT, LT(_LOWER, KC_SPC), KC_RSFT
         //                                    └────────┴────────┴────────┘         └────────┴────────┴────────┘
         ),
 
@@ -32,11 +42,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
            _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                               KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           _______, KC_1, KC_2, KC_3, KC_4, KC_5,                                           KC_6, KC_7, KC_8, KC_9, KC_0, KC_DOT,
+           _______, KC_GRAVE, KC_TILDE, KC_LBRC, KC_RBRC, S(KC_7),                        KC_CIRC, KC_PIPE, S(KC_3), S(KC_8), _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           _______, KC_DLR, KC_PLUS, KC_LPRN, KC_RPRN, KC_AT,                               KC_PIPE, KC_MINS, KC_EQL, KC_UNDS, KC_ASTR, KC_BSLS,
+           _______, KC_EXLM, S(KC_SCLN), KC_LPRN, KC_RPRN, KC_DLR,                       KC_AT, KC_MINUS, KC_EQUAL, KC_UNDS, KC_SEMICOLON, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           _______, KC_EXLM, KC_HASH, KC_LCBR, KC_RCBR, KC_GRAVE, _______,           _______, KC_AMPR, KC_LBRC, KC_RBRC, KC_PERC, KC_CIRC, _______,
+           _______, KC_PERC, KC_QUES, KC_LCBR, KC_RCBR, KC_BSLS, _______,           _______, KC_SLASH, KC_PLUS, S(KC_COMM), S(KC_DOT), S(KC_QUOT), _______,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                           _______, _______, KC_SPC,                    _______, _______, _______
         //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -46,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
            QK_BOOT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                               KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           QK_BACKLIGHT_OFF, _______, KC_P7,   KC_P8,   KC_P9, KC_PLUS,                           KC_DOWN, KC_RGHT, KC_MPLY, KC_VOLD, KC_VOLU, _______,
+           _______, _______, KC_P7,   KC_P8,   KC_P9, KC_PLUS,                           KC_DOWN, KC_RGHT, KC_MPLY, KC_VOLD, KC_VOLU, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
         _______, KC_LEFT_CTRL, LALT_T(KC_P4), LGUI_T(KC_P5), LSFT_T(KC_P6), KC_MINS,          KC_LEFT, KC_MINS, KC_EQL, _______, _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -60,70 +70,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
           _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-          _______, _______, KC_COMM, KC_DOWN, KC_DOT, _______,                             _______, _______, _______, _______, _______, _______,
+          _______, _______, KC_COMM, KC_DOWN, KC_DOT, _______,                             _______, KC_F7, KC_F8, KC_F9, KC_F12, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-        _______, _______, KC_LEFT, KC_ENT, LSFT_T(KC_RGHT), _______,                       _______, KC_O, KC_SCLN, KC_QUOT, _______, _______,
+        _______, _______, KC_LEFT, KC_ENT, LSFT_T(KC_RGHT), _______,                       _______, KC_F4, KC_F5, KC_F6, KC_F11, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-        _______, _______, _______, KC_UP, _______, _______, _______,             _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, KC_UP, _______, _______, _______,             _______, _______, KC_F1, KC_F2, KC_F3, KC_F10, _______,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         _______, _______, _______,                   _______, _______, _______
         //                              └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         )
 };
-
-/**
- * Define lighting layers.
- *
- * Iris rev6a uses WS2812 RGB Matrix lighting.
- * The RGB Matrix lighting option has already been enabled in ../../rev6a/config.h
- * You'll need to add #define SPLIT_LAYER_STATE_ENABLE to config.h if you
- * will be customizing the LED's per key.
- *
- * Here's how to customize the colors per layer and per key:
- * https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgb_matrix.md#direct-operation-iddirect-operation
- *
- * If you start getting real weird with it, your likely to exceed the firmware limit of 28672.
- * You may need to selectively disable some effects:
- * https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgb_matrix.md#rgb-matrix-effects-idrgb-matrix-effects
- *
- * There are 68 Leds. Printed on the board itself, the led numbers are 1-68.
- * For color addressing, use 0-67 as the index number.
- * rgb_matrix_set_color(index, r, g, b)
- *
- * Here's an LED number guide:
- * FRONT
- * Left Hand                    Right Hand
- * |00|01|02|03|04|05|          |39|38|37|36|35|34|
- * |11|10|09|08|07|06|          |40|41|42|43|44|45|
- * |12|13|14|15|16|17|          |51|50|49|48|47|46|
- * |23|22|21|20|19|18|27|    |61|52|53|54|55|56|57|
- *             |24|25|26|    |60|59|58|
- * REVERSE
- * Right Hand                   Left Hand
- * |65|--|--|66|--|67|          |33|--|32|--|--|31|
- * |--|--|--|--|--|--|          |--|--|--|--|--|--|
- * |--|--|--|--|--|--|          |--|--|--|--|--|--|
- * |64|--|--|63|--|--|--|    |--|--|--|29|--|--|30|
- *             |--|62|--|    |--|28|--|
- */
-// void rgb_matrix_indicators_user(void) {
-//   if (IS_LAYER_ON(0)) {
-//     rgb_matrix_set_color(1,255,0,0);
-//   }
-//   else if (IS_LAYER_ON(4)) {
-//     rgb_matrix_set_color(2,255,0,0);
-//   }
-//   else if (IS_LAYER_ON(5)) {
-//     rgb_matrix_set_color(3,255,0,0);
-//   }
-//   else if (IS_LAYER_ON(6)) {
-//     rgb_matrix_set_color(4,255,0,0);
-//   } else {
-//       rgb_matrix_disable();
-//   }
-//
-// }
-
 
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
@@ -151,4 +107,70 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
     return false;
+}
+
+
+// Leader Sequences
+void leader_end_user(void) {
+    // Email shortcut
+    if (leader_sequence_one_key(KC_D)) {
+        SEND_STRING("ddrempti@gmail.com");
+    }
+    // Assignment operator
+    else if (leader_sequence_one_key(KC_E)) {
+        SEND_STRING(" = ");
+    }
+    // PHP variable assignment
+    else if (leader_sequence_one_key(KC_4)) {
+        SEND_STRING("$ = ;" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+    }
+    // Arrow operator
+    else if (leader_sequence_one_key(KC_EQUAL)) {
+        SEND_STRING("=>");
+    }
+    // Code block delimiter, shift enter twice, and then go back up
+    else if (leader_sequence_one_key(KC_Q)) {
+        SEND_STRING("```" SS_DOWN(X_LSFT) SS_TAP(X_ENT) SS_UP(X_LSFT) SS_DOWN(X_LSFT) SS_TAP(X_ENT) SS_UP(X_LSFT) "```" SS_TAP(X_UP));
+    }
+    // JavaScript 'let' declaration
+    else if (leader_sequence_two_keys(KC_L, KC_E)) {
+        SEND_STRING("let  =" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+    }
+    // JavaScript 'const' declaration
+    else if (leader_sequence_two_keys(KC_C, KC_E)) {
+        SEND_STRING("const  =" SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+    }
+    // Send testing password
+    else if (leader_sequence_one_key(KC_1)) {
+        SEND_STRING("12345678");
+    }
+
+    // Send testing password 2
+    else if (leader_sequence_one_key(KC_2)) {
+        SEND_STRING("1800auther");
+    }
+
+    // Send `pn dev` command and hit enter
+    else if (leader_sequence_one_key(KC_P)) {
+        SEND_STRING("pn dev" SS_TAP(X_ENT));
+    }
+
+    // Git add + commit + push, leaving cursor inside commit message quotes
+    else if (leader_sequence_two_keys(KC_G, KC_P)) {
+        SEND_STRING("git add . && git commit -m \"\" && git push"
+                    SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)
+                    SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)
+                    SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)
+                    SS_TAP(X_LEFT));
+    }
+
+    // Git add + commit, leaving cursor inside commit message quotes
+    else if (leader_sequence_one_key(KC_G)) {
+        SEND_STRING("git add . && git commit -m \"\"" SS_TAP(X_LEFT));
+    }
+
+    // Jump to end of line and enter a ,
+    else if (leader_sequence_one_key(KC_COMM)) {
+        // TODO
+    }
 }
